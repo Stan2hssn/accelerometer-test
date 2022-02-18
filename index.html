@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        height: 300vh;
+        width: 100vw;
+      }
+
+      .circle {
+        width: 50px;
+        position: absolute;
+        height: 50px;
+        margin: auto;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        border-radius: 50%;
+        border: 5px solid #505050;
+        display: none;
+      }
+
+      .click {
+        width: max-content;
+        background: aqua;
+        padding: 18px;
+      }
+
+      .box {
+        position: absolute;
+        top: 60vh;
+        background-color: black;
+        width: 10vw;
+        height: 10vw;
+      }
+
+      h1 {
+        width: max-content;
+        position: absolute;
+        height: 50px;
+        margin: auto;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        font-family: manrope, "sans-serif";
+        /* font-variation-settings: "wght" 422; */
+        font-feature-settings: "liga" 0;
+      }
+    </style>
+    <title>Accelerometer-test</title>
+  </head>
+  <body>
+    <div id="output"></div>
+
+    <div class="circle"></div>
+
+    <div class="click">hello world</div>
+
+    <div class="box"></div>
+
+    <h1 id="text">Hello world</h1>
+
+    <input type="text" maxlength="9" placeholder="hello" id="input" />
+
+    <script>
+      // const circle = document.querySelector('.circle');
+
+      // window.addEventListener('deviceorientation', function (event) {
+      //     console.log(event.alpha + ' : ' + event.beta + ' : ' + event.gamma);
+      //     circle.style.transform = `translate(${-event.gamma * 2}px, ${-event.beta * 2}px)`;
+
+      // });
+
+      const text = document.querySelector("#text");
+      let children = text.children;
+
+
+      window.addEventListener("deviceorientation", function (event) {
+        let wght = event.gamma * 8 + 100;
+        let hello = event.gamma * 8 + 100;
+        let wghtThird = event.gamma * 8 + 100;
+        let wghtFourth = event.gamma * 8 + 100;
+        let wghtFifth = event.gamma * 8 + 100;
+        let wghtSix = event.gamma * 8 + 100;
+        let wghtSeven = event.gamma * 8 + 100;
+        let wghtEight = event.gamma * 8 + 100;
+        let wghtNine = event.gamma * 8 + 100;
+
+
+        children[0].style.fontVariationSettings = "'wght' " + Math.round(wght);
+        children[1].style.fontVariationSettings = "'hello' " + Math.round(wght);
+        children[2].style.fontVariationSettings = "'wght' " + Math.round(wghtThird);
+        children[3].style.fontVariationSettings = "'wght' " + Math.round(wghtFourth);
+        children[4].style.fontVariationSettings = "'wght' " + Math.round(wghtFifth);
+        children[5].style.fontVariationSettings = "'wght' " + Math.round(wghtSix);
+        children[6].style.fontVariationSettings = "'wght' " + Math.round(wghtSeven);
+        children[7].style.fontVariationSettings = "'wght' " + Math.round(wghtEight);
+        children[8].style.fontVariationSettings = "'wght' " + Math.round(wghtNine);
+
+
+
+        // if (event.gamma < 0) {
+        // //   var wght = event.gamma * 8 - 100;
+        //   text.style.fontVariationSettings = "'wght' " + Math.round(-wght);
+        //   console.log(event.alpha + " : " + event.beta + " : " + event.gamma);
+        // }
+
+        //   window.addEventListener("deviceorientation", function (event) {
+        //     span1.style.fontVariationSettings = "'wght' " + Math.round(wght);
+
+        //     console.log(wght1);
+
+        //     if (event.gamma < 0) {
+        //       text.style.fontVariationSettings =
+        //         `${event.gamma * 8 + 100}` + Math.round(-wght);
+        //       // console.log(event.alpha + " : " + event.beta + " : " + event.gamma);
+        //     }
+      });
+      document.querySelector("#input").oninput = function () {
+        var value = document.querySelector("#input").value;
+
+        console.log("work");
+
+        //   let listInput = [document.querySelector("#input").value.split("")];
+
+        text.innerHTML =
+          `<span id="span1" style="color: red;">${value.charAt(0)}</span>` +
+          `<span id="span2" style="color: red;">${value.charAt(1)}</span>` +
+          `<span id="span3" style="color: red;">${value.charAt(2)}</span>` +
+          `<span id="span4" style="color: red;">${value.charAt(3)}</span>` +
+          `<span id="span5" style="color: red;">${value.charAt(4)}</span>` +
+          `<span id="span6" style="color: red;">${value.charAt(5)}</span>` +
+          `<span id="span7" style="color: red;">${value.charAt(6)}</span>` +
+          `<span id="span8" style="color: red;">${value.charAt(7)}</span>` +
+          `<span id="span9" style="color: red;">${value.charAt(8)}</span>`;
+      };
+    </script>
+  </body>
+</html>

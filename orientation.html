@@ -1,0 +1,64 @@
+<html>
+	<head>
+		<title>
+			Orientation
+		</title>
+		
+		<script>
+
+			window.addEventListener('deviceorientation', handleOrientation);
+			
+			function handleOrientation(event){
+				var output=document.getElementById("output");
+				simpleOutput(event, output);
+				
+				var canvas=document.getElementById("canvas_output");
+				betterOutput(event, canvas);
+			}
+			
+			function simpleOutput(event, div){
+				var properties="";
+				for(var prop in event){
+					properties+=prop+": "+event[prop]+"<br>";
+				}
+				div.innerHTML=properties;
+			}
+			
+			function betterOutput(event, canvas){
+				canvas.width=window.innerWidth;
+				canvas.height=window.innerHeight;
+				
+				var context=canvas.getContext("2d");
+				var radius=Math.min(canvas.width,canvas.height)/10;
+				
+				var location0={
+					x:canvas.width/2,
+					y:canvas.height/2
+				}
+				
+				var location={
+					x:location0.x,
+					y:location0.y+event["beta"]*3
+				}
+				
+				context.beginPath();
+				context.arc(location.x,location.y,radius,0,2*Math.PI);
+				context.stroke();
+			}
+			
+		</script>
+	</head>
+
+	<body style="margin: 0;">
+		<div style="
+		height: 100vh;
+		width: 100vw;
+		" 
+		id="output"></div>
+		<!-- <div>
+			Use a mobile device to access this page. The ball moves depending on the device's pitch (beta).
+		</div> -->
+		
+		<canvas id="canvas_output" style="position:absolute;top:0px;left:0px;"></canvas>
+	</body>
+</html>

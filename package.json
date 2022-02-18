@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "gsap": "^3.9.1",
+    "splitting": "^1.0.6"
+  },
+  "name": "accelerometer-test",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Stan2hssn/accelerometer-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Stan2hssn/accelerometer-test/issues"
+  },
+  "homepage": "https://github.com/Stan2hssn/accelerometer-test#readme",
+  "description": ""
+}
