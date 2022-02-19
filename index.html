@@ -190,26 +190,26 @@
             //       // console.log(event.alpha + " : " + event.beta + " : " + event.gamma);
             //     }
           });
-          document.querySelector("#input").oninput = function () {
-            var value = document.querySelector("#input").value;
-
-            listInput.push(document.querySelector("#input").value.split(""));
-
-            console.log(listInput);
-
-            console.log("work");
-
-            text.innerHTML =
-              `<span id="span1" style="color: red;">${value.charAt(0)}</span>` +
-              `<span id="span2" style="color: red;">${value.charAt(1)}</span>` +
-              `<span id="span3" style="color: red;">${value.charAt(2)}</span>` +
-              `<span id="span4" style="color: red;">${value.charAt(3)}</span>` +
-              `<span id="span5" style="color: red;">${value.charAt(4)}</span>` +
-              `<span id="span6" style="color: red;">${value.charAt(5)}</span>` +
-              `<span id="span7" style="color: red;">${value.charAt(6)}</span>` +
-              `<span id="span8" style="color: red;">${value.charAt(7)}</span>` +
-              `<span id="span9" style="color: red;">${value.charAt(8)}</span>`;
-          };
+        };
+        document.querySelector("#input").oninput = function () {
+          var value = document.querySelector("#input").value;
+  
+          listInput.push(document.querySelector("#input").value.split(""));
+  
+          console.log(listInput);
+  
+          console.log("work");
+  
+          text.innerHTML =
+            `<span id="span1" style="color: red;">${value.charAt(0)}</span>` +
+            `<span id="span2" style="color: red;">${value.charAt(1)}</span>` +
+            `<span id="span3" style="color: red;">${value.charAt(2)}</span>` +
+            `<span id="span4" style="color: red;">${value.charAt(3)}</span>` +
+            `<span id="span5" style="color: red;">${value.charAt(4)}</span>` +
+            `<span id="span6" style="color: red;">${value.charAt(5)}</span>` +
+            `<span id="span7" style="color: red;">${value.charAt(6)}</span>` +
+            `<span id="span8" style="color: red;">${value.charAt(7)}</span>` +
+            `<span id="span9" style="color: red;">${value.charAt(8)}</span>`;
         };
       });
     </script>
