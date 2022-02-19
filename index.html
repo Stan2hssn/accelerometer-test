@@ -76,25 +76,37 @@
     <input type="text" maxlength="9" placeholder="hello" id="input" />
 
     <script>
-          // const circle = document.querySelector('.circle');
+      // const circle = document.querySelector('.circle');
 
-          // window.addEventListener('deviceorientation', function (event) {
-          //     console.log(event.alpha + ' : ' + event.beta + ' : ' + event.gamma);
-          //     circle.style.transform = `translate(${-event.gamma * 2}px, ${-event.beta * 2}px)`;
+      // window.addEventListener('deviceorientation', function (event) {
+      //     console.log(event.alpha + ' : ' + event.beta + ' : ' + event.gamma);
+      //     circle.style.transform = `translate(${-event.gamma * 2}px, ${-event.beta * 2}px)`;
 
-          // });
+      // });
 
+      const text = document.querySelector("#text");
+      let children = text.children;
+      let listInput = [];
 
-          navigator.permissions.query({name:'geolocation'}).then(function(result) {
-      if (result.state === 'granted') {
-        Accelerometer();
-      } else if (result.state === 'prompt') {
-        Accelerometer();
-      }
-          const text = document.querySelector("#text");
-          let children = text.children;
-          let listInput = [];
+      window.addEventListener("DOMContentLoaded", (event) => {
+        requestAccelerometer = () => {
+          if (
+            typeof DeviceOrientationEvent !== "undefined" &&
+            typeof DeviceOrientationEvent.requestPermission === "function"
+          ) {
+            DeviceOrientationEvent.requestPermission()
+              .then((response) => {
+                if (response === "granted") {
+                  this.startAccelerometer();
+                }
+              })
+              .catch(console.error);
+          } else {
+            this.startAccelerometer();
+          }
+        };
 
+        startAccelerometer = () => {
           window.addEventListener("deviceorientation", function (event) {
             let coeficient = 8 / listInput.length;
 
@@ -198,6 +210,8 @@
               `<span id="span8" style="color: red;">${value.charAt(7)}</span>` +
               `<span id="span9" style="color: red;">${value.charAt(8)}</span>`;
           };
+        };
+      });
     </script>
   </body>
 </html>
