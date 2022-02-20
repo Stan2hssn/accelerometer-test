@@ -180,10 +180,14 @@
       }
       document.querySelector("#input").oninput = function () {
         function mobile() {
-          if (window.innerWidth < 1200) {
+          if (screen.width < 1200) {
             getAccel();
           }
         }
+
+        mobile();
+
+        console.log(screen.width);
         var value = document.querySelector("#input").value;
 
         listInput.push(document.querySelector("#input").value.split(""));
