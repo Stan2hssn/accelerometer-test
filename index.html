@@ -88,130 +88,117 @@
       let children = text.children;
       let listInput = [];
 
-      window.addEventListener("DOMContentLoaded", (event) => {
-        requestAccelerometer = () => {
-          if (
-            typeof DeviceOrientationEvent !== "undefined" &&
-            typeof DeviceOrientationEvent.requestPermission === "function"
-          ) {
-            DeviceOrientationEvent.requestPermission()
-              .then((response) => {
-                if (response === "granted") {
-                  this.startAccelerometer();
-                }
-              })
-              .catch(console.error);
-          } else {
-            this.startAccelerometer();
+      function getAccel() {
+        DeviceMotionEvent.requestPermission().then((response) => {
+          if (response == "granted") {
+            window.addEventListener("deviceorientation", function (event) {
+              let coeficient = 8 / listInput.length;
+
+              if (event.gamma > 0) {
+                var wght = event.gamma * (coeficient * 1) + 100;
+                wghtSecond = event.gamma * (coeficient * 2) + 100;
+                wghtThird = event.gamma * (coeficient * 3) + 100;
+                wghtFourth = event.gamma * (coeficient * 4) + 100;
+                wghtFifth = event.gamma * (coeficient * 5) + 100;
+                wghtSix = event.gamma * (coeficient * 6) + 100;
+                wghtSeven = event.gamma * (coeficient * 7) + 100;
+                wghtEight = event.gamma * (coeficient * 8) + 100;
+                wghtNine = event.gamma * (coeficient * 9) + 100;
+
+                children[0].style.fontVariationSettings =
+                  "'wght' " + Math.round(wght);
+                children[1].style.fontVariationSettings =
+                  "'wght' " + Math.round(wghtSecond);
+                children[2].style.fontVariationSettings =
+                  "'wght' " + Math.round(wghtThird);
+                children[3].style.fontVariationSettings =
+                  "'wght' " + Math.round(wghtFourth);
+                children[4].style.fontVariationSettings =
+                  "'wght' " + Math.round(wghtFifth);
+                children[5].style.fontVariationSettings =
+                  "'wght' " + Math.round(wghtSix);
+                children[6].style.fontVariationSettings =
+                  "'wght' " + Math.round(wghtSeven);
+                children[7].style.fontVariationSettings =
+                  "'wght' " + Math.round(wghtEight);
+                children[8].style.fontVariationSettings =
+                  "'wght' " + Math.round(wghtNine);
+              }
+              if (event.gamma < 0) {
+                var wght = event.gamma * (coeficient * 9) - 100;
+                wghtSecond = event.gamma * (coeficient * 8) - 100;
+                wghtThird = event.gamma * (coeficient * 7) - 100;
+                wghtFourth = event.gamma * (coeficient * 6) - 100;
+                wghtFifth = event.gamma * (coeficient * 5) - 100;
+                wghtSix = event.gamma * (coeficient * 4) - 100;
+                wghtSeven = event.gamma * (coeficient * 3) - 100;
+                wghtEight = event.gamma * (coeficient * 2) - 100;
+                wghtNine = event.gamma * (coeficient * 1) - 100;
+
+                children[0].style.fontVariationSettings =
+                  "'wght' " + Math.round(-wght);
+                children[1].style.fontVariationSettings =
+                  "'wght' " + Math.round(-wghtSecond);
+                children[2].style.fontVariationSettings =
+                  "'wght' " + Math.round(-wghtThird);
+                children[3].style.fontVariationSettings =
+                  "'wght' " + Math.round(-wghtFourth);
+                children[4].style.fontVariationSettings =
+                  "'wght' " + Math.round(-wghtFifth);
+                children[5].style.fontVariationSettings =
+                  "'wght' " + Math.round(-wghtSix);
+                children[6].style.fontVariationSettings =
+                  "'wght' " + Math.round(-wghtSeven);
+                children[7].style.fontVariationSettings =
+                  "'wght' " + Math.round(-wghtEight);
+                children[8].style.fontVariationSettings =
+                  "'wght' " + Math.round(-wghtNine);
+              }
+
+              console.log();
+
+              // if (event.gamma < 0) {
+              // //   var wght = event.gamma * 8 - 100;
+              //   text.style.fontVariationSettings = "'wght' " + Math.round(-wght);
+              //   console.log(event.alpha + " : " + event.beta + " : " + event.gamma);
+              // }
+
+              //   window.addEventListener("deviceorientation", function (event) {
+              //     span1.style.fontVariationSettings = "'wght' " + Math.round(wght);
+
+              //     console.log(wght1);
+
+              //     if (event.gamma < 0) {
+              //       text.style.fontVariationSettings =
+              //         `${event.gamma * 8 + 100}` + Math.round(-wght);
+              //       // console.log(event.alpha + " : " + event.beta + " : " + event.gamma);
+              //     }
+            });
           }
-        };
+        });
+      }
+      document.querySelector("#input").oninput = function () {
+        getAccel();
 
-        startAccelerometer = () => {
-          window.addEventListener("deviceorientation", function (event) {
-            let coeficient = 8 / listInput.length;
+        var value = document.querySelector("#input").value;
 
-            if (event.gamma > 0) {
-              var wght = event.gamma * (coeficient * 1) + 100;
-              wghtSecond = event.gamma * (coeficient * 2) + 100;
-              wghtThird = event.gamma * (coeficient * 3) + 100;
-              wghtFourth = event.gamma * (coeficient * 4) + 100;
-              wghtFifth = event.gamma * (coeficient * 5) + 100;
-              wghtSix = event.gamma * (coeficient * 6) + 100;
-              wghtSeven = event.gamma * (coeficient * 7) + 100;
-              wghtEight = event.gamma * (coeficient * 8) + 100;
-              wghtNine = event.gamma * (coeficient * 9) + 100;
+        listInput.push(document.querySelector("#input").value.split(""));
 
-              children[0].style.fontVariationSettings =
-                "'wght' " + Math.round(wght);
-              children[1].style.fontVariationSettings =
-                "'wght' " + Math.round(wghtSecond);
-              children[2].style.fontVariationSettings =
-                "'wght' " + Math.round(wghtThird);
-              children[3].style.fontVariationSettings =
-                "'wght' " + Math.round(wghtFourth);
-              children[4].style.fontVariationSettings =
-                "'wght' " + Math.round(wghtFifth);
-              children[5].style.fontVariationSettings =
-                "'wght' " + Math.round(wghtSix);
-              children[6].style.fontVariationSettings =
-                "'wght' " + Math.round(wghtSeven);
-              children[7].style.fontVariationSettings =
-                "'wght' " + Math.round(wghtEight);
-              children[8].style.fontVariationSettings =
-                "'wght' " + Math.round(wghtNine);
-            }
-            if (event.gamma < 0) {
-              var wght = event.gamma * (coeficient * 9) - 100;
-              wghtSecond = event.gamma * (coeficient * 8) - 100;
-              wghtThird = event.gamma * (coeficient * 7) - 100;
-              wghtFourth = event.gamma * (coeficient * 6) - 100;
-              wghtFifth = event.gamma * (coeficient * 5) - 100;
-              wghtSix = event.gamma * (coeficient * 4) - 100;
-              wghtSeven = event.gamma * (coeficient * 3) - 100;
-              wghtEight = event.gamma * (coeficient * 2) - 100;
-              wghtNine = event.gamma * (coeficient * 1) - 100;
+        console.log(listInput);
 
-              children[0].style.fontVariationSettings =
-                "'wght' " + Math.round(-wght);
-              children[1].style.fontVariationSettings =
-                "'wght' " + Math.round(-wghtSecond);
-              children[2].style.fontVariationSettings =
-                "'wght' " + Math.round(-wghtThird);
-              children[3].style.fontVariationSettings =
-                "'wght' " + Math.round(-wghtFourth);
-              children[4].style.fontVariationSettings =
-                "'wght' " + Math.round(-wghtFifth);
-              children[5].style.fontVariationSettings =
-                "'wght' " + Math.round(-wghtSix);
-              children[6].style.fontVariationSettings =
-                "'wght' " + Math.round(-wghtSeven);
-              children[7].style.fontVariationSettings =
-                "'wght' " + Math.round(-wghtEight);
-              children[8].style.fontVariationSettings =
-                "'wght' " + Math.round(-wghtNine);
-            }
+        console.log("work");
 
-            console.log();
-
-            // if (event.gamma < 0) {
-            // //   var wght = event.gamma * 8 - 100;
-            //   text.style.fontVariationSettings = "'wght' " + Math.round(-wght);
-            //   console.log(event.alpha + " : " + event.beta + " : " + event.gamma);
-            // }
-
-            //   window.addEventListener("deviceorientation", function (event) {
-            //     span1.style.fontVariationSettings = "'wght' " + Math.round(wght);
-
-            //     console.log(wght1);
-
-            //     if (event.gamma < 0) {
-            //       text.style.fontVariationSettings =
-            //         `${event.gamma * 8 + 100}` + Math.round(-wght);
-            //       // console.log(event.alpha + " : " + event.beta + " : " + event.gamma);
-            //     }
-          });
-        };
-        document.querySelector("#input").oninput = function () {
-          var value = document.querySelector("#input").value;
-  
-          listInput.push(document.querySelector("#input").value.split(""));
-  
-          console.log(listInput);
-  
-          console.log("work");
-  
-          text.innerHTML =
-            `<span id="span1" style="color: red;">${value.charAt(0)}</span>` +
-            `<span id="span2" style="color: red;">${value.charAt(1)}</span>` +
-            `<span id="span3" style="color: red;">${value.charAt(2)}</span>` +
-            `<span id="span4" style="color: red;">${value.charAt(3)}</span>` +
-            `<span id="span5" style="color: red;">${value.charAt(4)}</span>` +
-            `<span id="span6" style="color: red;">${value.charAt(5)}</span>` +
-            `<span id="span7" style="color: red;">${value.charAt(6)}</span>` +
-            `<span id="span8" style="color: red;">${value.charAt(7)}</span>` +
-            `<span id="span9" style="color: red;">${value.charAt(8)}</span>`;
-        };
-      });
+        text.innerHTML =
+          `<span id="span1" style="color: red;">${value.charAt(0)}</span>` +
+          `<span id="span2" style="color: red;">${value.charAt(1)}</span>` +
+          `<span id="span3" style="color: red;">${value.charAt(2)}</span>` +
+          `<span id="span4" style="color: red;">${value.charAt(3)}</span>` +
+          `<span id="span5" style="color: red;">${value.charAt(4)}</span>` +
+          `<span id="span6" style="color: red;">${value.charAt(5)}</span>` +
+          `<span id="span7" style="color: red;">${value.charAt(6)}</span>` +
+          `<span id="span8" style="color: red;">${value.charAt(7)}</span>` +
+          `<span id="span9" style="color: red;">${value.charAt(8)}</span>`;
+      };
     </script>
   </body>
 </html>
