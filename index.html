@@ -51,6 +51,7 @@
         right: 0;
         top: 0;
         bottom: 0;
+        font-size: 64px;
         font-family: manrope, "sans-serif";
         /* font-variation-settings: "wght" 422; */
         font-feature-settings: "liga" 0;
@@ -178,8 +179,11 @@
         });
       }
       document.querySelector("#input").oninput = function () {
-        getAccel();
-
+        function mobile() {
+          if (window.innerWidth < 1200) {
+            getAccel();
+          }
+        }
         var value = document.querySelector("#input").value;
 
         listInput.push(document.querySelector("#input").value.split(""));
